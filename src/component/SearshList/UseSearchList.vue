@@ -1,34 +1,16 @@
 <script setup>
-import axios from 'axios';
-import { computed, onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
+import useSearch from './useSearch';
 
-const user = ref([]);
-const searchQuery = ref('');
-
-const url = 'https://jsonplaceholder.typicode.com/users';
-
-const fetchUsers = async () => {
-  try {
-    const res = await axios.get(url);
-    user.value = res.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
+const { searchQuery, filteredUsers, fetchUsers } = useSearch();
 
 onMounted(() => {
   fetchUsers();
 });
-
-const filteredUsers = computed(() => {
-  return user.value.filter((item) => {
-    return item.username.toLowerCase().includes(searchQuery.value.toLowerCase());
-  });
-});
 </script>
 
 <template>
-  <div class="flex flex-col gap-10 mt-10 ms-10 max-w-[1300px]">
+  <div class="flex flex-col gap-10 mt-10 ms-10 max-w-[900px]">
     <div class="my-5">Search List</div>
     <div class="flex gap-5">
       <input
