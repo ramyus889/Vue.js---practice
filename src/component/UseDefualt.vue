@@ -1,17 +1,27 @@
-<script setup></script>
+<script setup>
+import { useItems } from './useItems.js';
+
+const { items } = useItems();
+</script>
 <template>
-  <div class="flex flex-col gap-10">
-    <div class="flex gap-10">
-      <img src="/img/Car/Car9.webp" class="w-[400px] rounded-xl" alt="" />
-      <img src="/img/Car/CarUp9.png" class="w-[400px] rounded-xl" alt="" />
-    </div>
-    <div class="flex gap-10">
-      <img src="/img/Car/Car7.webp" class="w-[400px] rounded-xl" alt="" />
-      <img src="/img/Car/CarUp7.png" class="w-[400px] rounded-xl" alt="" />
-    </div>
-    <div class="flex gap-10">
-      <img src="/img/Car/Car8.webp" class="w-[400px] rounded-xl" alt="" />
-      <img src="/img/Car/CarUp8.png" class="w-[400px] rounded-xl" alt="" />
+  <div class="inline-flex flex-col gap-10">
+    <div v-for="item in items" :key="item.id">
+      <div class="flex gap-10">
+        <div data-aos="fade-up" :data-aos-delay="item.delay" class="">
+          <img
+            alt=""
+            :src="item.image"
+            class="w-[400px] rounded-xl hover:rotate-[45deg] transition-all"
+          />
+        </div>
+        <div data-aos="fade-up" :data-aos-delay="item.delay" class="">
+          <img
+            alt=""
+            :src="item.imageUp"
+            class="w-[400px] rounded-xl hover:-rotate-[45deg] transition-all"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
