@@ -11,52 +11,52 @@ export const routeUrl = [
     path: '/'
   },
   {
-    path: 'RestApi'
+    path: '/RestApi'
   },
   {
-    path: 'UserList'
+    path: '/UserList'
   },
   {
-    path: 'SearchList'
+    path: '/SearchList'
   },
   {
-    path: 'DeleteUser'
+    path: '/DeleteUser'
   },
   {
-    path: 'PuchList'
+    path: '/PuchList'
   },
   {
-    path: 'EditUser'
+    path: '/EditUser'
   }
 ];
 
 export const routes = [
   {
-    path: `/${routeUrl[0].path}`,
+    path: `${routeUrl[0].path}`,
     component: UseHome
   },
   {
-    path: `/${routeUrl[1].path}`,
+    path: `${routeUrl[1].path}`,
     component: UseRestApi
   },
   {
-    path: `/${routeUrl[2].path}`,
+    path: `${routeUrl[2].path}`,
     component: UseUserList
   },
   {
-    path: `/${routeUrl[3].path}`,
+    path: `${routeUrl[3].path}`,
     component: UseSearchList
   },
   {
-    path: `/${routeUrl[4].path}`,
+    path: `${routeUrl[4].path}`,
     component: UseDeleteUser
   },
   {
-    path: `/${routeUrl[5].path}`,
+    path: `${routeUrl[5].path}`,
     component: UsePushList
   },
   {
-    path: `/${routeUrl[6].path}`,
+    path: `${routeUrl[6].path}`,
     component: UseEditUser
   }
 ];
