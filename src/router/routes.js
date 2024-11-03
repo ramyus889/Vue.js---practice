@@ -6,33 +6,57 @@ import UseHome from '@/component/UseHome.vue';
 import UseRestApi from '@/component/UseRestApi.vue';
 import UseUserList from '@/component/UserList/UseUserList.vue';
 
+export const routeUrl = [
+  {
+    path: '/'
+  },
+  {
+    path: 'RestApi'
+  },
+  {
+    path: 'UserList'
+  },
+  {
+    path: 'SearchList'
+  },
+  {
+    path: 'DeleteUser'
+  },
+  {
+    path: 'PuchList'
+  },
+  {
+    path: 'EditUser'
+  }
+];
+
 export const routes = [
   {
-    path: '/',
+    path: `/${routeUrl[0].path}`,
     component: UseHome
   },
   {
-    path: '/RestApi',
+    path: `/${routeUrl[1].path}`,
     component: UseRestApi
   },
   {
-    path: '/UserList',
+    path: `/${routeUrl[2].path}`,
     component: UseUserList
   },
   {
-    path: '/SearchList',
+    path: `/${routeUrl[3].path}`,
     component: UseSearchList
   },
   {
-    path: '/DeleteUser',
+    path: `/${routeUrl[4].path}`,
     component: UseDeleteUser
   },
   {
-    path: '/PuchList',
+    path: `/${routeUrl[5].path}`,
     component: UsePushList
   },
   {
-    path: '/EditUser',
+    path: `/${routeUrl[6].path}`,
     component: UseEditUser
   }
 ];
