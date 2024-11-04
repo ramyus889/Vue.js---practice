@@ -1,11 +1,11 @@
 <script setup>
-import UseDefualt from './UseDefualt.vue';
+import UseMain from './UseMain.vue';
 </script>
 
 <template>
-  <div class="mt-20 ms-20">
+  <div class="">
     <div class="">
-      <UseDefualt />
+      <UseMain />
     </div>
   </div>
 </template>
