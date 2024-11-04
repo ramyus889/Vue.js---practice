@@ -6,6 +6,7 @@ import { MotionPlugin } from '@vueuse/motion';
 import { createPinia } from 'pinia';
 import 'primeicons/primeicons.css';
 import PrimeVue from 'primevue/config';
+import ToastService from 'primevue/toastservice';
 import { createApp } from 'vue';
 import App from './App.vue';
 
@@ -25,6 +26,7 @@ const router = createRouter({
 });
 
 app.use(router);
+app.use(ToastService);
 app.use(MotionPlugin);
 app.use(createPinia());
 app.use(autoAnimatePlugin);

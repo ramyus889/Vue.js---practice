@@ -1,39 +1,12 @@
 <script setup>
-import axios from 'axios';
 import Button from 'primevue/button';
-import { computed, onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
+import useDelete from './useDelete';
 
-const user = ref([]);
-const searchQuery = ref('');
-
-const url = 'https://jsonplaceholder.typicode.com/users';
-
-const fetchUsers = async () => {
-  try {
-    const res = await axios.get(url);
-    user.value = res.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const deleteUser = async (id) => {
-  try {
-    await axios.delete(`${url}/${id}`); // Удаляем пользователя
-    user.value = user.value.filter((item) => item.id !== id); // Обновляем список пользователей
-  } catch (error) {
-    console.log(error);
-  }
-};
+const { deleteUser, searchQuery, filteredUsers, fetchUsers } = useDelete();
 
 onMounted(() => {
-  fetchUsers(); // Загружаем пользователей при монтировании
-});
-
-const filteredUsers = computed(() => {
-  return user.value.filter((item) => {
-    return item.username.toLowerCase().includes(searchQuery.value.toLowerCase());
-  });
+  fetchUsers();
 });
 </script>
 
@@ -50,7 +23,7 @@ const filteredUsers = computed(() => {
     </div>
     <div class="grid grid-cols-2 gap-5" v-auto-animate>
       <div v-for="item in filteredUsers" :key="item.id">
-        <div class="UserCard w-full justify-between items-center">
+        <div class="items-center justify-between w-full UserCard">
           <span>{{ item.username }}</span>
           <Button
             @click="deleteUser(item.id)"
