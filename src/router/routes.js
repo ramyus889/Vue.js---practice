@@ -1,60 +1,32 @@
-import Use3D from '@/component/Use3D.vue';
-import UseBackgrounds from '@/component/UseBackgrounds.vue';
-import UseBlogs from '@/component/UseBlogs.vue';
-import UseColors from '@/component/UseColors.vue';
-import UseComponents from '@/component/UseComponents.vue';
+import UseDeleteUser from '@/component/DeleteUser/UseDeleteUser.vue';
+import UseEditUser from '@/component/EditList/UseEditUser.vue';
+import UsePushList from '@/component/PushList/UsePushList.vue';
+import UseSearchList from '@/component/SearshList/UseSearchList.vue';
 import UseHome from '@/component/UseHome.vue';
-import UseIcons from '@/component/UseIcons.vue';
-import UseIllustrations from '@/component/UseIllustrations.vue';
-import UseInspirations from '@/component/UseInspirations.vue';
-import UseLibraries from '@/component/UseLibraries.vue';
-import UsePhotos from '@/component/UsePhotos.vue';
-import UseTools from '@/component/UseTools.vue';
-import UseTypography from '@/component/UseTypography.vue';
-import UseVideos from '@/component/UseVideos.vue';
+import UseRestApi from '@/component/UseRestApi.vue';
+import UseUserList from '@/component/UserList/UseUserList.vue';
 
 export const routeUrl = [
   {
     path: '/'
   },
   {
-    path: '/Icons'
+    path: '/RestApi'
   },
   {
-    path: '/Illustrations'
+    path: '/UserList'
   },
   {
-    path: '/Photos'
+    path: '/SearchList'
   },
   {
-    path: '/Videos'
+    path: '/DeleteUser'
   },
   {
-    path: '/Colors'
+    path: '/PuchList'
   },
   {
-    path: '/Backgrounds'
-  },
-  {
-    path: '/Typography'
-  },
-  {
-    path: '/3D'
-  },
-  {
-    path: '/Libraries'
-  },
-  {
-    path: '/Blogs'
-  },
-  {
-    path: '/Tools'
-  },
-  {
-    path: '/Inspirations'
-  },
-  {
-    path: '/Components'
+    path: '/EditUser'
   }
 ];
 
@@ -65,54 +37,26 @@ export const routes = [
   },
   {
     path: `${routeUrl[1].path}`,
-    component: UseIcons
+    component: UseRestApi
   },
   {
     path: `${routeUrl[2].path}`,
-    component: UseIllustrations
+    component: UseUserList
   },
   {
     path: `${routeUrl[3].path}`,
-    component: UsePhotos
+    component: UseSearchList
   },
   {
     path: `${routeUrl[4].path}`,
-    component: UseVideos
+    component: UseDeleteUser
   },
   {
     path: `${routeUrl[5].path}`,
-    component: UseColors
+    component: UsePushList
   },
   {
     path: `${routeUrl[6].path}`,
-    component: UseBackgrounds
-  },
-  {
-    path: `${routeUrl[7].path}`,
-    component: UseTypography
-  },
-  {
-    path: `${routeUrl[8].path}`,
-    component: Use3D
-  },
-  {
-    path: `${routeUrl[9].path}`,
-    component: UseLibraries
-  },
-  {
-    path: `${routeUrl[10].path}`,
-    component: UseBlogs
-  },
-  {
-    path: `${routeUrl[11].path}`,
-    component: UseTools
-  },
-  {
-    path: `${routeUrl[12].path}`,
-    component: UseInspirations
-  },
-  {
-    path: `${routeUrl[13].path}`,
-    component: UseComponents
+    component: UseEditUser
   }
 ];

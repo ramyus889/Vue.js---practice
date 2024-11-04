@@ -4,7 +4,7 @@ import UseHeader from './component/UseHeader.vue';
 
 <template>
   <div class="">
-    <div class="max-w-[95rem] mx-auto md:px-10 p-6">
+    <div class="">
       <UseHeader />
       <RouterView />
     </div>

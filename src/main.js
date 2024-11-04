@@ -8,7 +8,6 @@ import 'primeicons/primeicons.css';
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
 import { createApp } from 'vue';
-import Vue3Marquee from 'vue3-marquee';
 import App from './App.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
@@ -27,7 +26,6 @@ const router = createRouter({
 });
 
 app.use(router);
-app.use(Vue3Marquee);
 app.use(ToastService);
 app.use(MotionPlugin);
 app.use(createPinia());
