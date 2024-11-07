@@ -11,5 +11,6 @@ import { routeUrl } from '../router/routes.js';
     <RouterLink :to="`${routeUrl[4].path}`">DeleteUser</RouterLink>
     <RouterLink :to="`${routeUrl[5].path}`">PushList</RouterLink>
     <RouterLink :to="`${routeUrl[6].path}`">EditUser</RouterLink>
+    <RouterLink :to="`${routeUrl[7].path}`">GSAP</RouterLink>
   </div>
 </template>

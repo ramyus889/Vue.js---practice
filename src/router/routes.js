@@ -1,5 +1,6 @@
 import UseDeleteUser from '@/component/DeleteUser/UseDeleteUser.vue';
 import UseEditUser from '@/component/EditList/UseEditUser.vue';
+import UseGsapVue from '@/component/GSAP/UseGsapVue.vue';
 import UsePushList from '@/component/PushList/UsePushList.vue';
 import UseSearchList from '@/component/SearshList/UseSearchList.vue';
 import UseHome from '@/component/UseHome.vue';
@@ -27,6 +28,9 @@ export const routeUrl = [
   },
   {
     path: '/EditUser'
+  },
+  {
+    path: '/UseGsap'
   }
 ];
 
@@ -58,5 +62,9 @@ export const routes = [
   {
     path: `${routeUrl[6].path}`,
     component: UseEditUser
+  },
+  {
+    path: `${routeUrl[7].path}`,
+    component: UseGsapVue
   }
 ];
