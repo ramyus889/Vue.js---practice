@@ -18,37 +18,37 @@ const fetchDev = async () => {
     toast.add({
       severity: 'error',
       summary: 'Error',
-      detail: `${error} `,
+      detail: `${error}`,
       life: 3000
     });
   }
+};
+
+const handleClickBuy = (item) => {
+  toast.add({
+    severity: 'success',
+    summary: 'Buy',
+    detail: `You've successfully bought ${item.title}`,
+    life: 3000
+  });
+};
+
+const handleClickSell = (item) => {
+  toast.add({
+    severity: 'success',
+    summary: 'Sell',
+    detail: `You've successfully sold ${item.title}`,
+    life: 3000
+  });
 };
 
 onMounted(() => {
   fetchDev();
 });
 
-const handleClickBuy = () => {
-  toast.add({
-    severity: 'success',
-    summary: 'Buy',
-    detail: `You've successfully Buy ${dev.value[3].title}`,
-    life: 3000
-  });
-};
-const handleClickSell = () => {
-  toast.add({
-    severity: 'success',
-    summary: 'Sell',
-    detail: `You've successfully Sell ${dev.value[0].title}`,
-    life: 3000
-  });
-};
-
 onMounted(() => {
-  // Анимация изменения прозрачности и масштаба
   gsap.to('.box', {
-    opacity: 0.5
+    opacity: 1
   });
 });
 </script>
@@ -58,7 +58,12 @@ onMounted(() => {
   <div class="">
     <div class="inline-grid items-center grid-cols-4 gap-5 box">
       <div v-for="item in dev" :key="item.id" class="">
-        <div ref="box" class="max-w-[300px] border border-slate-500 rounded-xl">
+        <div
+          data-aos="fade-up"
+          :data-aos-delay="item.id * 300"
+          ref="box"
+          class="max-w-[300px] border border-slate-500 rounded-xl"
+        >
           <img :src="item.image" alt="" class="rounded-t-xl" />
           <div class="flex flex-col gap-5 p-2 bg-slate-800 rounded-b-xl">
             <div class="flex justify-between w-full">
@@ -66,8 +71,8 @@ onMounted(() => {
               <div class="font-semibold">{{ item.price }}</div>
             </div>
             <div class="flex gap-3">
-              <Button class="w-full" @click="handleClickBuy()">Buy</Button>
-              <Button class="w-full" severity="danger" @click="handleClickSell()">Sell</Button>
+              <Button class="w-full" @click="handleClickBuy(item)">Buy</Button>
+              <Button class="w-full" severity="danger" @click="handleClickSell(item)">Sell</Button>
             </div>
           </div>
         </div>
