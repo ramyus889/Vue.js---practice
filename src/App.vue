@@ -1,7 +1,12 @@
-<script setup></script>
+<script setup>
+import UseHeader from './component/UseHeader.vue';
+</script>
 
 <template>
   <div class="">
-    <div class="mt-20 ms-20">asds</div>
+    <div class="">
+      <UseHeader />
+      <RouterView />
+    </div>
   </div>
 </template>

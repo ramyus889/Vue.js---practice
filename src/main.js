@@ -10,8 +10,8 @@ import ToastService from 'primevue/toastservice';
 import { createApp } from 'vue';
 import App from './App.vue';
 
-// import { createRouter, createWebHistory } from 'vue-router';
-// import { routes } from './router/routes.js';
+import { createRouter, createWebHistory } from 'vue-router';
+import { routes } from './router/routes.js';
 
 const app = createApp(App);
 app.use(PrimeVue, {
@@ -20,12 +20,12 @@ app.use(PrimeVue, {
   }
 });
 
-// const router = createRouter({
-//   history: createWebHistory(),
-//   routes
-// });
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
 
-// app.use(router);
+app.use(router);
 app.use(ToastService);
 app.use(MotionPlugin);
 app.use(createPinia());
