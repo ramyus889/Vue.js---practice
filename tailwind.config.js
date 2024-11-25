@@ -1,4 +1,4 @@
-import tailwindcssMotion from "tailwindcss-motion";
+import tailwindcssMotion from 'tailwindcss-motion';
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
