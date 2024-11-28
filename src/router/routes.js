@@ -1,11 +1,11 @@
-import UseDeleteUser from '@/component/DeleteUser/UseDeleteUser.vue';
-import UseEditUser from '@/component/EditList/UseEditUser.vue';
+import UseDeleteUser from '@/ApiComponent/DeleteUser/UseDeleteUser.vue';
+import UseEditUser from '@/ApiComponent/EditList/UseEditUser.vue';
+import UsePushList from '@/ApiComponent/PushList/UsePushList.vue';
+import UseSearchList from '@/ApiComponent/SearshList/UseSearchList.vue';
+import UseRestApi from '@/ApiComponent/UseRestApi.vue';
+import UseUserList from '@/ApiComponent/UserList/UseUserList.vue';
 import UseGsapVue from '@/component/GSAP/UseGsapVue.vue';
-import UsePushList from '@/component/PushList/UsePushList.vue';
-import UseSearchList from '@/component/SearshList/UseSearchList.vue';
 import UseHome from '@/component/UseHome.vue';
-import UseRestApi from '@/component/UseRestApi.vue';
-import UseUserList from '@/component/UserList/UseUserList.vue';
 
 export const routeUrl = [
   {
