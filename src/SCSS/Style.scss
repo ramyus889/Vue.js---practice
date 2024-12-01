@@ -1,3 +1,15 @@
-.size {
-  font-size: 50px;
+@use './_MixinStyle' as mixins;
+@use './_variables' as vars;
+
+.hovertext:hover {
+  @include mixins.hoverText;
+}
+
+.text {
+  color: #adbacd;
+}
+
+.text:hover {
+  color: #64748b;
+  transition: all 0.3s linear;
 }

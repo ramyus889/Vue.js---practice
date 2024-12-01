@@ -1,3 +1,13 @@
-.size {
-  font-size: 50px;
+.hovertext:hover {
+  border: 2px solid red;
+  transition: all 0.3s linear;
+}
+
+.text {
+  color: #adbacd;
+}
+
+.text:hover {
+  color: #64748b;
+  transition: all 0.3s linear;
 }
