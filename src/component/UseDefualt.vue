@@ -1,6 +1,4 @@
-<script setup>
-import '../SCSS/Style.scss';
-</script>
+<script setup></script>
 
 <template>
   <div class="inline-block">
