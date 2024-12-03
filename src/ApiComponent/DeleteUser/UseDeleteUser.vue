@@ -1,5 +1,4 @@
 <script setup>
-import Button from 'primevue/button';
 import { onMounted } from 'vue';
 import useDelete from './useDelete';
 
@@ -25,7 +24,7 @@ onMounted(() => {
       <div v-for="item in filteredUsers" :key="item.id">
         <div class="items-center justify-between w-full UserCard">
           <span>{{ item.username }}</span>
-          <Button
+          <UseButton
             @click="deleteUser(item.id)"
             severity="danger"
             icon="pi pi-trash"
