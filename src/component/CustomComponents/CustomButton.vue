@@ -1,6 +1,8 @@
 <template>
   <button :class="computedButtonClass" @click="$emit('click')">
-    {{ label }}
+    <slot>
+      {{ label }}
+    </slot>
   </button>
 </template>
 
@@ -10,7 +12,7 @@ import { computed, defineEmits, defineProps } from 'vue';
 const props = defineProps({
   label: {
     type: String,
-    required: true
+    default: 'Button'
   },
   buttonClass: {
     type: String,
@@ -18,19 +20,11 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: 'red'
+    default: 'blue'
   },
   size: {
     type: String,
     default: 'medium'
-  },
-  rounded: {
-    type: [String, Number],
-    default: 'lg' // Default border-radius
-  },
-  rotate: {
-    type: [String, Number],
-    default: '0'
   }
 });
 
@@ -61,21 +55,8 @@ const computedButtonClass = computed(() => {
     '3xl': 'px-12 py-6 text-3xl'
   };
 
-  const roundedClasses = {
-    sm: 'rounded-[3px]',
-    md: 'rounded-[5px]',
-    lg: 'rounded-[10px]',
-    xl: 'rounded-[15px]',
-    '2xl': 'rounded-[20px]',
-    '3xl': 'rounded-[25px]',
-    full: 'rounded-full'
-  };
-
   const colorClass = colorClasses[props.color] || colorClasses.red;
   const sizeClass = sizeClasses[props.size] || sizeClasses.medium;
-  const roundedClass = roundedClasses[props.rounded] || roundedClasses.lg;
-  const rotateClass = `rotate-${props.rotate}`;
-
-  return `${props.buttonClass} ${sizeClass} ${colorClass} ${roundedClass} ${rotateClass} transition-all`;
+  return `${props.buttonClass} ${sizeClass} ${colorClass} rounded-lg transition-all`;
 });
 </script>
