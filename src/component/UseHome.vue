@@ -3,7 +3,7 @@ import UseDefualt from './UseDefualt.vue';
 </script>
 
 <template>
-  <div class="mt-20 ms-20">
+  <div class="flex mt-20 ms-20 place-content-start">
     <div class="">
       <UseDefualt />
     </div>
