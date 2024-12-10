@@ -1,5 +1,5 @@
 <template>
-  <button :class="computedButtonClass" @click="$emit('click')">
+  <button :class="computedButtonClass" @click="handleClick">
     <slot>
       {{ label }}
     </slot>
@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { computed, defineEmits, defineProps } from 'vue';
+import { computed, defineEmits, defineProps, ref } from 'vue';
 
 const props = defineProps({
   label: {
@@ -25,10 +25,15 @@ const props = defineProps({
   size: {
     type: String,
     default: 'medium'
+  },
+  animationClass: {
+    type: String,
+    default: 'motion-preset-confetti'
   }
 });
 
-defineEmits(['click']);
+const emit = defineEmits(['click']);
+const isAnimating = ref(false);
 
 const computedButtonClass = computed(() => {
   const colorClasses = {
@@ -57,6 +62,16 @@ const computedButtonClass = computed(() => {
 
   const colorClass = colorClasses[props.color] || colorClasses.red;
   const sizeClass = sizeClasses[props.size] || sizeClasses.medium;
-  return `${props.buttonClass} ${sizeClass} ${colorClass} rounded-lg transition-all`;
+  const animationClass = isAnimating.value ? props.animationClass : '';
+
+  return `${props.buttonClass} ${sizeClass} ${colorClass} ${animationClass} rounded-lg transition-all`;
 });
+
+const handleClick = () => {
+  isAnimating.value = true;
+  emit('click');
+  setTimeout(() => {
+    isAnimating.value = false;
+  }, 1000);
+};
 </script>
