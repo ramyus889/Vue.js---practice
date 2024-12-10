@@ -5,7 +5,7 @@ const counter = ref(0);
 
 const { pause, resume } = useIntervalFn(() => {
   counter.value++;
-}, 1000);
+}, 500);
 
 const stopCounter = () => {
   pause();
@@ -14,7 +14,7 @@ const stopCounter = () => {
 const startCounter = () => {
   resume();
 };
-export default function useTailwindHook() {
+export default function useCustomHook() {
   return {
     startCounter,
     stopCounter,
