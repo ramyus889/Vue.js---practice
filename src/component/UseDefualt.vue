@@ -10,14 +10,21 @@ const { counter, startCounter, stopCounter } = useCustomHook();
     <div class="">
       <h1 class="text-2xl font-bold">Счетчик: {{ counter }}</h1>
       <div class="flex flex-col gap-20 mt-20">
-        <CustomButton size="large" @click="startCounter" animationClass="motion-preset-pulse">
+        <CustomButton
+          size="large"
+          outline="outline-green"
+          @click="startCounter"
+          motionAnimate="m-p-wobble"
+          motionClick="motion-preset-confetti"
+        >
           Старт
         </CustomButton>
         <CustomButton
           label="Стоп"
-          color="cyan"
+          outline="outline-red"
           size="2xl"
-          animationClass="motion-preset-seesaw"
+          motionClick="motion-preset-confetti"
+          motionAnimate="m-p-float"
           @click="stopCounter"
         />
       </div>
