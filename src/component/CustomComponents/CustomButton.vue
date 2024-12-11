@@ -1,9 +1,15 @@
 <template>
-  <button :class="computedButtonClass" @click="handleClick">
+  <component
+    :is="as"
+    :class="computedButtonClass"
+    @click="handleClick"
+    v-bind="linkAttributes"
+    :disabled="disabled"
+  >
     <slot>
       {{ label }}
     </slot>
-  </button>
+  </component>
 </template>
 
 <script setup>
@@ -26,6 +32,10 @@ const props = defineProps({
     type: String,
     default: 'medium'
   },
+  rounded: {
+    type: String,
+    default: 'rounded-lg'
+  },
   motionClick: {
     type: String,
     default: ''
@@ -41,6 +51,26 @@ const props = defineProps({
   textColor: {
     type: String,
     default: ''
+  },
+  textPosition: {
+    type: String,
+    default: ''
+  },
+  as: {
+    type: String,
+    default: 'button'
+  },
+  to: {
+    type: [String, Object],
+    default: null
+  },
+  href: {
+    type: String,
+    default: null
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -48,12 +78,23 @@ const emit = defineEmits(['click']);
 const isAnimating = ref(false);
 
 const handleClick = () => {
-  isAnimating.value = true;
-  emit('click');
-  setTimeout(() => {
-    isAnimating.value = false;
-  }, 1000);
+  if (!props.disabled) {
+    isAnimating.value = true;
+    emit('click');
+    setTimeout(() => {
+      isAnimating.value = false;
+    }, 1000);
+  }
 };
+
+const linkAttributes = computed(() => {
+  if (props.as === 'a') {
+    return { href: props.href };
+  } else if (props.as === 'router-link') {
+    return { to: props.to };
+  }
+  return {};
+});
 
 const sizeClasses = {
   small: 'px-2 py-1 text-sm',
@@ -121,13 +162,45 @@ const computedButtonClass = computed(() => {
     'text-cyan': 'border-none text-cyan-500 bg-transparent'
   };
 
+  const textPositionClasses = {
+    left: 'text-left',
+    center: 'text-center',
+    right: 'text-right'
+  };
+
+  const roundedClasses = {
+    none: 'rounded-none',
+    sm: 'rounded-sm',
+    md: 'rounded-md',
+    lg: 'rounded-lg',
+    xl: 'rounded-xl',
+    '2xl': 'rounded-2xl',
+    '3xl': 'rounded-3xl',
+    full: 'rounded-full'
+  };
+
   const textClass = textClasses[props.textColor] || '';
   const outlineClass = outlineClasses[props.outline] || '';
   const motionClass = motionClasses[props.motionAnimate] || '';
   const motionClick = isAnimating.value ? props.motionClick : '';
   const sizeClass = sizeClasses[props.size] || sizeClasses.medium;
   const colorClass = colorClasses[props.bgColor] || colorClasses.red;
+  const roundedClass = roundedClasses[props.rounded] || roundedClasses.md;
+  const textPositionClass = textPositionClasses[props.textPosition] || '';
+  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : '';
 
-  return `${props.buttonClass} ${sizeClass} ${colorClass} ${textClass} ${motionClick} ${motionClass} ${outlineClass} rounded-lg transition-all`;
+  return `
+    transition-all
+    ${sizeClass}
+    ${textClass}
+    ${colorClass}
+    ${motionClick}
+    ${motionClass}
+    ${outlineClass}
+    ${roundedClass}
+    ${disabledClass}
+    ${textPositionClass}
+    ${props.buttonClass}
+  `;
 });
 </script>
