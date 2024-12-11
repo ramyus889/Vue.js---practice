@@ -11,6 +11,8 @@ import ToastService from 'primevue/toastservice';
 import { createApp } from 'vue';
 import App from './App.vue';
 
+import CustomButton from '../src/component/CustomComponents/CustomButton.vue';
+
 import { createRouter, createWebHistory } from 'vue-router';
 import { routes } from './router/routes.js';
 
@@ -27,7 +29,8 @@ const router = createRouter({
 });
 
 app.use(router);
-app.component('UseButton', Button);
+app.component('UsePrimeButton', Button);
+app.component('UseButton', CustomButton);
 app.use(ToastService);
 app.use(MotionPlugin);
 app.use(createPinia());

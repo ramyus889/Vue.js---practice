@@ -1,5 +1,4 @@
 <script setup>
-import CustomButton from './CustomComponents/CustomButton.vue';
 import useCustomHook from './Hooks/CustomHook';
 
 const { counter, startCounter, stopCounter } = useCustomHook();
@@ -10,7 +9,7 @@ const { counter, startCounter, stopCounter } = useCustomHook();
     <div class="">
       <h1 class="text-2xl font-bold">Счетчик: {{ counter }}</h1>
       <div class="flex flex-col gap-20 mt-20">
-        <CustomButton
+        <UseButton
           size="large"
           outline="outline-green"
           @click="startCounter"
@@ -18,8 +17,8 @@ const { counter, startCounter, stopCounter } = useCustomHook();
           motionClick="motion-preset-confetti"
         >
           Старт
-        </CustomButton>
-        <CustomButton
+        </UseButton>
+        <UseButton
           label="Стоп"
           outline="outline-red"
           size="2xl"
