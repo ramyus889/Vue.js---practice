@@ -8,19 +8,22 @@ const items = [
     id: 1,
     name: 'SearchList',
     pathItems: '/SearchList',
-    OutlineColor: 'outline-green'
+    OutlineColor: 'outline-green',
+    disabled: false
   },
   {
     id: 2,
     name: 'RestApi',
     pathItems: '/RestApi',
-    OutlineColor: 'outline-blue'
+    OutlineColor: 'outline-blue',
+    disabled: true
   },
   {
     id: 3,
     name: 'UserList',
     pathItems: '/UserList',
-    OutlineColor: 'outline-red'
+    OutlineColor: 'outline-red',
+    disabled: false
   }
 ];
 </script>
@@ -33,6 +36,7 @@ const items = [
         <UseButton
           size="large"
           outline="outline-green"
+          disabled
           @click="startCounter"
           motionAnimate="m-p-wobble"
           motionClick="motion-preset-confetti"
@@ -56,6 +60,7 @@ const items = [
         :key="item.id"
         as="router-link"
         :label="item.name"
+        :disabled="item.disabled"
         :to="item.pathItems"
         v-for="item in items"
         textPosition="center"
