@@ -61,7 +61,7 @@ const props = defineProps({
     default: 'button'
   },
   to: {
-    type: [String, Object],
+    type: String,
     default: null
   },
   href: {

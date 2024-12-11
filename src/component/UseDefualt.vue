@@ -8,22 +8,19 @@ const items = [
     id: 1,
     name: 'SearchList',
     pathItems: '/SearchList',
-    OutlineColor: 'outline-green',
-    disabled: false
+    OutlineColor: 'outline-green'
   },
   {
     id: 2,
     name: 'RestApi',
     pathItems: '/RestApi',
-    OutlineColor: 'outline-blue',
-    disabled: true
+    OutlineColor: 'outline-blue'
   },
   {
     id: 3,
     name: 'UserList',
     pathItems: '/UserList',
-    OutlineColor: 'outline-red',
-    disabled: false
+    OutlineColor: 'outline-red'
   }
 ];
 </script>
@@ -60,7 +57,6 @@ const items = [
         :key="item.id"
         as="router-link"
         :label="item.name"
-        :disabled="item.disabled"
         :to="item.pathItems"
         v-for="item in items"
         textPosition="center"
