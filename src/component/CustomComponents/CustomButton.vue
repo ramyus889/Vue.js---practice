@@ -4,8 +4,10 @@
     :class="computedButtonClass"
     @click="handleClick"
     v-bind="linkAttributes"
-    :disabled="disabled"
+    :disabled="disabled || loading"
   >
+    <span v-if="loading" :class="computedLoadingIconClass"></span>
+    <span v-if="icon && !loading" :class="computedIconClass"></span>
     <slot>
       {{ label }}
     </slot>
@@ -61,7 +63,7 @@ const props = defineProps({
     default: 'button'
   },
   to: {
-    type: String,
+    type: [String, Object],
     default: null
   },
   href: {
@@ -71,6 +73,22 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false
+  },
+  icon: {
+    type: String,
+    default: ''
+  },
+  iconPos: {
+    type: String,
+    default: 'left'
+  },
+  loading: {
+    type: Boolean,
+    default: false
+  },
+  loadingIcon: {
+    type: String,
+    default: 'pi pi-spinner pi-spin'
   }
 });
 
@@ -78,7 +96,7 @@ const emit = defineEmits(['click']);
 const isAnimating = ref(false);
 
 const handleClick = () => {
-  if (!props.disabled) {
+  if (!props.disabled && !props.loading) {
     isAnimating.value = true;
     emit('click');
     setTimeout(() => {
@@ -94,6 +112,14 @@ const linkAttributes = computed(() => {
     return { to: props.to };
   }
   return {};
+});
+
+const computedIconClass = computed(() => {
+  return `${props.icon} ${props.iconPos === 'right' ? 'ml-2' : 'mr-2'}`;
+});
+
+const computedLoadingIconClass = computed(() => {
+  return `${props.loadingIcon} animate-spin mr-2`;
 });
 
 const sizeClasses = {
@@ -187,7 +213,7 @@ const computedButtonClass = computed(() => {
   const colorClass = colorClasses[props.bgColor] || colorClasses.red;
   const roundedClass = roundedClasses[props.rounded] || roundedClasses.md;
   const textPositionClass = textPositionClasses[props.textPosition] || '';
-  const disabledClass = props.disabled ? 'opacity-50 cursor-not-allowed' : '';
+  const disabledClass = props.disabled || props.loading ? 'opacity-50 cursor-not-allowed' : '';
 
   return `
     transition-all

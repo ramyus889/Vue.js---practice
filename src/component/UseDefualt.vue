@@ -52,6 +52,7 @@ const items = [
     </div>
     <div class="flex flex-col gap-10">
       <UseButton
+        loading
         size="2xl"
         rounded="full"
         :key="item.id"
