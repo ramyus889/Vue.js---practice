@@ -7,9 +7,7 @@
         size="large"
         label="Start"
         outline="outline-green"
-        disabled
         @click="startCounter"
-        motionAnimate="m-p-wobble"
         motionClick="motion-preset-confetti"
       />
     </div>
