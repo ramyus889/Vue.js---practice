@@ -7,6 +7,8 @@ const { pause, resume } = useIntervalFn(() => {
   counter.value++;
 }, 500);
 
+
+
 const stopCounter = () => {
   pause();
 };

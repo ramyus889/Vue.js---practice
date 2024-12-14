@@ -4,13 +4,11 @@
     :class="computedButtonClass"
     @click="handleClick"
     v-bind="linkAttributes"
-    :disabled="disabled || loading"
+    :disabled="isDisabled"
   >
     <span v-if="loading" :class="computedLoadingIconClass"></span>
     <span v-if="icon && !loading" :class="computedIconClass"></span>
-    <slot>
-      {{ label }}
-    </slot>
+    <slot>{{ label }}</slot>
   </component>
 </template>
 
@@ -18,100 +16,44 @@
 import { computed, defineEmits, defineProps, ref } from 'vue';
 
 const props = defineProps({
-  label: {
-    type: String,
-    default: 'Button'
-  },
-  buttonClass: {
-    type: String,
-    default: ''
-  },
-  bgColor: {
-    type: String,
-    default: 'bg-blue'
-  },
-  size: {
-    type: String,
-    default: 'medium'
-  },
-  rounded: {
-    type: String,
-    default: 'rounded-lg'
-  },
-  motionClick: {
-    type: String,
-    default: ''
-  },
-  motionAnimate: {
-    type: String,
-    default: ''
-  },
-  outline: {
-    type: String,
-    default: ''
-  },
-  textColor: {
-    type: String,
-    default: ''
-  },
-  textPosition: {
-    type: String,
-    default: ''
-  },
-  as: {
-    type: String,
-    default: 'button'
-  },
-  to: {
-    type: [String, Object],
-    default: null
-  },
-  href: {
-    type: String,
-    default: null
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  icon: {
-    type: String,
-    default: ''
-  },
-  iconPos: {
-    type: String,
-    default: 'left'
-  },
-  loading: {
-    type: Boolean,
-    default: false
-  },
-  loadingIcon: {
-    type: String,
-    default: 'pi pi-spinner pi-spin'
-  }
+  as: { type: String, default: 'button' },
+  to: { type: [String, Object], default: null },
+  icon: { type: String, default: '' },
+  href: { type: String, default: null },
+  size: { type: String, default: 'medium' },
+  label: { type: String, default: 'Button' },
+  outline: { type: String, default: '' },
+  iconPos: { type: String, default: 'left' },
+  loading: { type: Boolean, default: false },
+  bgColor: { type: String, default: 'bg-blue' },
+  rounded: { type: String, default: 'rounded-lg' },
+  disabled: { type: Boolean, default: false },
+  textColor: { type: String, default: '' },
+  buttonClass: { type: String, default: '' },
+  motionClick: { type: String, default: '' },
+  loadingIcon: { type: String, default: 'pi pi-spinner pi-spin' },
+  textPosition: { type: String, default: '' },
+  motionAnimate: { type: String, default: '' },
+  variant: { type: String, default: 'default' }
 });
 
 const emit = defineEmits(['click']);
 const isAnimating = ref(false);
 
 const handleClick = () => {
-  if (!props.disabled && !props.loading) {
+  if (!isDisabled.value) {
     isAnimating.value = true;
     emit('click');
-    setTimeout(() => {
-      isAnimating.value = false;
-    }, 1000);
+    setTimeout(() => (isAnimating.value = false), 1000);
   }
 };
 
 const linkAttributes = computed(() => {
-  if (props.as === 'a') {
-    return { href: props.href };
-  } else if (props.as === 'router-link') {
-    return { to: props.to };
-  }
-  return {};
+  return props.as === 'a'
+    ? { href: props.href }
+    : props.as === 'router-link'
+      ? { to: props.to }
+      : {};
 });
 
 const computedIconClass = computed(() => {
@@ -121,6 +63,25 @@ const computedIconClass = computed(() => {
 const computedLoadingIconClass = computed(() => {
   return `${props.loadingIcon} animate-spin mr-2`;
 });
+
+const isDisabled = computed(() => props.disabled || props.loading);
+
+const textPositionClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right'
+};
+
+const roundedClasses = {
+  none: 'rounded-none',
+  sm: 'rounded-sm',
+  md: 'rounded-md',
+  lg: 'rounded-lg',
+  xl: 'rounded-xl',
+  '2xl': 'rounded-2xl',
+  '3xl': 'rounded-3xl',
+  full: 'rounded-full'
+};
 
 const sizeClasses = {
   small: 'px-2 py-1 text-sm',
@@ -140,6 +101,14 @@ const motionClasses = {
   'm-p-wobble': 'motion-preset-wobble',
   'm-p-stretch': 'motion-preset-stretch',
   'm-p-oscillate': 'motion-preset-oscillate'
+};
+
+const variantClasses = {
+  default: '',
+  primary: 'bg-blue-500 text-white',
+  secondary: 'bg-gray-500 text-white',
+  success: 'bg-green-500 text-white',
+  danger: 'bg-red-500 text-white'
 };
 
 const computedButtonClass = computed(() => {
@@ -188,44 +157,18 @@ const computedButtonClass = computed(() => {
     'text-cyan': 'border-none text-cyan-500 bg-transparent'
   };
 
-  const textPositionClasses = {
-    left: 'text-left',
-    center: 'text-center',
-    right: 'text-right'
-  };
-
-  const roundedClasses = {
-    none: 'rounded-none',
-    sm: 'rounded-sm',
-    md: 'rounded-md',
-    lg: 'rounded-lg',
-    xl: 'rounded-xl',
-    '2xl': 'rounded-2xl',
-    '3xl': 'rounded-3xl',
-    full: 'rounded-full'
-  };
-
-  const textClass = textClasses[props.textColor] || '';
-  const outlineClass = outlineClasses[props.outline] || '';
-  const motionClass = motionClasses[props.motionAnimate] || '';
-  const motionClick = isAnimating.value ? props.motionClick : '';
-  const sizeClass = sizeClasses[props.size] || sizeClasses.medium;
-  const colorClass = colorClasses[props.bgColor] || colorClasses.red;
-  const roundedClass = roundedClasses[props.rounded] || roundedClasses.md;
-  const textPositionClass = textPositionClasses[props.textPosition] || '';
-  const disabledClass = props.disabled || props.loading ? 'opacity-50 cursor-not-allowed' : '';
-
   return `
     transition-all
-    ${sizeClass}
-    ${textClass}
-    ${colorClass}
-    ${motionClick}
-    ${motionClass}
-    ${outlineClass}
-    ${roundedClass}
-    ${disabledClass}
-    ${textPositionClass}
+    ${sizeClasses[props.size] || sizeClasses.medium}
+    ${textClasses[props.textColor] || ''}
+    ${colorClasses[props.bgColor] || colorClasses.red}
+    ${isAnimating.value ? props.motionClick : ''}
+    ${motionClasses[props.motionAnimate] || ''}
+    ${outlineClasses[props.outline] || ''}
+    ${roundedClasses[props.rounded] || roundedClasses.md}
+    ${isDisabled.value ? 'opacity-50 cursor-not-allowed' : ''}
+    ${textPositionClasses[props.textPosition] || ''}
+    ${variantClasses[props.variant] || ''}
     ${props.buttonClass}
   `;
 });

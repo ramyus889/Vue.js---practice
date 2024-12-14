@@ -14,41 +14,6 @@ const items = [
     id: 1,
     name: 'Home',
     pathItems: `${routeUrl[0].path}`
-  },
-  {
-    id: 2,
-    name: 'RestApi',
-    pathItems: `${routeUrl[1].path}`
-  },
-  {
-    id: 3,
-    name: 'UserList',
-    pathItems: `${routeUrl[2].path}`
-  },
-  {
-    id: 4,
-    name: 'SearchList',
-    pathItems: `${routeUrl[3].path}`
-  },
-  {
-    id: 5,
-    name: 'DeleteUser',
-    pathItems: `${routeUrl[4].path}`
-  },
-  {
-    id: 6,
-    name: 'PushList',
-    pathItems: `${routeUrl[5].path}`
-  },
-  {
-    id: 7,
-    name: 'EditUser',
-    pathItems: `${routeUrl[6].path}`
-  },
-  {
-    id: 8,
-    name: 'GSAP',
-    pathItems: `${routeUrl[7].path}`
   }
 ];
 </script>
